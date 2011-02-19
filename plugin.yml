@@ -1,0 +1,14 @@
+name: SMWrapper
+main: com.bukkit.magik.SMWrapper.SMWrapper
+version: 0.1
+author: magik
+description: >
+             Wrapper for SimpleMarket that adds location features.
+commands:
+    shop:
+       description: Accesses the shop command system.
+       usage: |
+              /<command>
+              /<command> help <topic/command>
+              /<command> <itemid>
+              /<command> <subcommand> <args>               

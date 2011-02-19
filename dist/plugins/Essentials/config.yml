@@ -1,0 +1,147 @@
+# If you want to use special characters in this document, such as accented letters, you MUST save the file as UTF-8, not ANSI.
+# If you receive an error when Essentials loads, ensure that:
+#   - No tabs are present: YAML only allows spaces
+#   - Indents are correct: YAML heirarchy is based entirely on indentation
+#   - You have "escaped" all apostrophes in your text: If you want to write "don't", for example, write "don''t" instead (note the doubled apostrphe)
+#   - List items are prefixed with a hyphen and indented:
+#       lists:
+#         - look like this
+#       not:
+#       - like this
+#   - Text with symbols is enclosed in single or double quotation marks
+#   - CraftBukkit and Permissions have been updated: CraftBukkit and Essentials almost always line up, but sometimes other plugins fall behind CraftBukkit's multiple daily updates
+#   - You have saved the document as UTF-8, NOT the default, ANSI
+
+# This is your server's mcserverlist.net API key.  Register your server at mcserverlist.net if you haven't already.
+mcsl-key: ''
+
+# If EssentialsChat is installed, this will define how far a player's voice travels, in blocks.  Set to 0 to make all chat global.
+# Note that users with the "essentials.chat.spy" permission will hear everything, regardless of this setting.
+# Users with essentials.chat.shout can override this by prefixing text with an exclamation mark (!)
+chat-radius: 0
+
+# A color code between 0-9 or a-f. Set to 'none' to disable.
+ops-name-color: 'c'
+
+# The character(s) to prefix all nicknames, so that you know they are not true usernames.
+nickname-prefix: '~'
+
+# The delay, in seconds, required between /home, /tp, etc.
+teleport-cooldown: 0
+
+# The delay, in seconds, before a user actually teleports.  If the user moves or gets attacked in this timeframe, the teleport never occurs.
+teleport-delay: 0
+
+# The delay, in seconds, required between /heal attempts
+heal-cooldown: 60
+
+# The number of items given if the quantity parameter is left out in /item or /give.
+default-stack-size: 64
+
+# Whether or not to reclaim memory on player logout; this is technical, and should only be disabled under special circumstances.
+# This generally increases server stability unless very specific runtime configurations are used.
+reclaim-onlogout: true
+
+# Should primitive spawn protection be enabled?  For most servers, this should be flase; it is better to use a third-party plugin to protect it.
+spawn-protection: false
+
+# Nether settings (switch between worlds with "/world nether" and "/world normal")
+# Sets whether the nether system is enabled, what folder to save the world in, and whether portals should teleport players between worlds.
+nether:
+  enabled: false
+  folder: nether
+  portals-enabled: false
+
+# Mob limit on spawnmob
+spawnmob-limit: 10
+
+#Show other plugins commands in help
+non-ess-in-help: true;
+
+# The message of the day, displayed on connect and by typing /motd.
+motd:
+  - '&cWelcome, {PLAYER}&c!'
+  - '&fType &c/help&f for a list of commands.'
+  - 'Currently online: {PLAYERLIST}'
+
+# The server rules, available by typing /rules
+rules:
+  - '[1] Be respectful'
+  - '[2] Be ethical'
+  - '[3] Use common sense'
+
+# Disabled commands will be completelly unavailable on the server.
+disabled-commands:
+ - nick
+
+# Restricted commands will only be available to ops.
+# These will have NO EFFECT if you have Permissions installed!
+# These are here only if you want something simpler than Permissions.
+restricted-commands:
+  - bigtree
+  - item
+  - give
+  - heal
+  - plugin
+  - time
+  - top
+  - tp
+  - tphere
+  - tree
+
+# Note: All items MUST be followed by a quantity!
+# Times are measured in seconds.
+kits:
+  tools:
+    delay: 10
+    items:
+      - 277 1
+      - 278 1
+      - 279 1
+
+
+# EssentialsProtect settings requires EssentialsProtect.jar
+
+#Database settings for sign / rail protection
+#get mysql.jar and sqlite and place it in your serverroot/lib directory from here:
+#http://java.net/projects/essentials/sources/svn/show/lib?rev=435
+
+#mysql or sqlite
+ep-datatype: 'sqlite'
+
+#database login details for mysql
+ep-username: 'root'
+ep-password: 'root'
+ep-mysqlDb: 'jdbc:mysql://localhost:3306/minecraft'
+
+#Specific protection settings
+ep-protectSigns: true
+ep-protectRails: true
+ep-protectBlockBelow: true
+ep-preventBlockOnRail: false
+
+#Server wide item protection
+
+##################################################
+#ep-alert:
+#   on-placement: 10,11 Not Implemented Yet
+#   on-use: Not implemented Yet
+#   on-break: 46 Not Implemented Yet
+##################################################
+ep-blacklist-placement: 327,326,14,56,46,11,10,9,8
+ep-blacklist-usage: 327,326,325
+
+#Server wide general protection
+ep-prevent-lava-flow: false
+ep-prevent-water-flow: false
+ep-prevent-water-bucket-flow: false
+ep-prevent-fire-spread: false
+ep-prevent-lava-fire-spread: false
+ep-prevent-flint-fire: false
+#ep-prevent-tnt-explosion: false Not Implemented Yet
+#ep-prevent-creeper-explosion: false Not Implemented Yet
+
+
+# End Essentials Protect Settings
+
+# End of File

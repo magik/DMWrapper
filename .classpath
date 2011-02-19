@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="E:/Workspaces/SMWrapper/dist/plugins/iConomy.jar"/>
+	<classpathentry kind="lib" path="E:/Workspaces/SMWrapper/dist/plugins/Permissions.jar"/>
+	<classpathentry kind="lib" path="E:/Workspaces/SMWrapper/dist/plugins/SMWrapper/SimpleMarket.jar"/>
+	<classpathentry kind="lib" path="E:/Workspaces/SMWrapper/dist/craftbukkit.jar" sourcepath="/Bukkit"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
