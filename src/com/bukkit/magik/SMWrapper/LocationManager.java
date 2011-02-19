@@ -151,8 +151,8 @@ public class LocationManager {
 		while(itr.hasNext()) {
 			ShopLocation tmp = itr.next();
 			if ( id.equals(tmp.id) ) {
-				Location dest = new Location(tmp.setLoc1.getWorld(), tmp.setLoc1.getX(), tmp.setLoc1.getY(), tmp.setLoc1.getZ() );
-				dest.setX(dest.getY()+1);
+				Location dest = new Location(tmp.setLoc1.getWorld(), tmp.setLoc1.getBlockX(), tmp.setLoc1.getBlockY(), tmp.setLoc1.getBlockZ() );
+				dest.setY(dest.getY()+1);
 				return dest;
 			}
 		}

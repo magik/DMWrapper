@@ -173,13 +173,13 @@ public class SMWrapper extends JavaPlugin {
 				} else {
 					// send player message on how to use /shop loc
 					sender.sendMessage("Usage: /shop location set - starts the shop setup process");
-					sender.sendMessage("        /shop location cancel - cancels setting a shop location");
-					sender.sendMessage("        /shop location check - checks ID of current location");
-					sender.sendMessage("        /shop location remove <ID> - removes the shop location");
-					sender.sendMessage("        /shop location enable - enables location based shops");
-					sender.sendMessage("        /shop location disable - disable location based shops");
-					sender.sendMessage("        /shop location list - lists shop IDs");
-					sender.sendMessage("        /shop location tp - teleports to shop");
+					sender.sendMessage("         /shop location cancel - cancels setting a shop location");
+					sender.sendMessage("         /shop location check - checks ID of current location");
+					sender.sendMessage("         /shop location remove <ID> - removes the shop location");
+					sender.sendMessage("         /shop location enable - enables location based shops");
+					sender.sendMessage("         /shop location disable - disable location based shops");
+					sender.sendMessage("         /shop location list - lists shop IDs");
+					sender.sendMessage("         /shop location tp - teleports to shop");
 					return true; 
 				}
 			}
