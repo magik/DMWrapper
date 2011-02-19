@@ -73,9 +73,9 @@ groups:
             - 'iConomyChestShop.shop.use'
             - 'herochat.create'
             - 'herochat.remove'
-            - 'simplemarket.access'
-            - 'simplemarket.buy'
-            - 'simplemarket.sell'
+            - 'dynamicmarket.access'
+            - 'dynamicmarket.buy'
+            - 'dynamicmarket.sell'
     Moderator:
         default: false
         info:
@@ -115,8 +115,8 @@ groups:
 # sk89q can use /spawn & /time
 ##
 users:
-    kigam:
-        group: Admins
+    #kigam:
+        #group: Admins
 #        permissions:
     TheMvanH:
         group: Moderator
