@@ -113,7 +113,7 @@ public class LocationManager {
 	
 	public boolean add(ShopLocation sl) {
 		if ( intersectsExistingShop(sl) ) return false;
-		sl.id = getNextID();
+		if ( sl.id == null ) sl.id = getNextID();
 		shops.add(sl);
 		saveConfigFile();
 		return true;

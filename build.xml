@@ -48,6 +48,17 @@
     	        <attribute name="Class-Path" value="./SMWrapper/SimpleMarket.jar ../sqlitejdbc-v056.jar ../mysql-connector-java-5.1.14-bin.jar ../mysql-connector-java-bin.jar" />
 			</manifest>
 		</jar>
+    	<mkdir dir="target"/>
+	    <mkdir dir="target/SMWrapper"/>
+    	<copy todir="target">
+    		<fileset file="dist/plugins/SMWrapper.jar"/>
+    	</copy>
+    	<copy todir="target/SMWrapper">
+    		<fileset file="SimpleMarket.jar" />
+    		<fileset file="shops.yml" />
+    	</copy>
+    	<zip destfile="target/SMWrapper.zip" basedir="target" includes="SMWrapper.jar SMWrapper SMWrapper/SimpleMarket.jar SMWrapper/shops.yml"/>
+
 	
 
     </target>

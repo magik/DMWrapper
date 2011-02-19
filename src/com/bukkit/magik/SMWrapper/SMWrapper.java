@@ -62,7 +62,7 @@ public class SMWrapper extends JavaPlugin {
 		
 		locMgr = new LocationManager(this);
 				
-		log.info("SMWrapper loading...");
+		log.info(name+" ("+version+") loading...");
 		
 		blockListener =  new SMWrapperBlockListener(this);
 		playerListener = new SMWrapperPlayerListener(this);
@@ -78,7 +78,7 @@ public class SMWrapper extends JavaPlugin {
 	@Override
 	public void onDisable() {
 		sm.onDisable();
-		log.info("SMWrapper disabled");
+		log.info(name+" ("+version+") disabled");
 	}
 
 	@Override
@@ -88,7 +88,7 @@ public class SMWrapper extends JavaPlugin {
 		sm.onEnable();
 		getServer().getPluginManager().registerEvent(Event.Type.BLOCK_RIGHTCLICKED, blockListener, Priority.Monitor, this);
 		getServer().getPluginManager().registerEvent(Event.Type.PLAYER_MOVE, playerListener, Priority.Monitor, this);
-		log.info("SMWrapper enabled!");
+		log.info(name+" ("+version+") enabled");
 	}
 	
 	public void setupPermissions()
