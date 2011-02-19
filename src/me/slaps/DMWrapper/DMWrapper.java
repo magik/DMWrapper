@@ -31,7 +31,7 @@ public class DMWrapper extends JavaPlugin {
 
 	public String name; // = "DMWrapper";
 	public String codename = "Rwanda";
-	public static String version; // = "0.01";
+	public static String version; // = "0.02";
 	public static String directory; // = "DMWrapper" + File.separator;
 	
 	public final Logger log = Logger.getLogger("Minecraft");
