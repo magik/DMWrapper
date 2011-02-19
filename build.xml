@@ -4,16 +4,17 @@
               To include a user specific buildfile here, simply create one in the same
               directory with the processing instruction <?eclipse.ant.import?>
               as the first entry and export the buildfile again. -->
-<project basedir="." default="build" name="SMWrapper">
+<project basedir="." default="build" name="DMWrapper">
 	<property name="version" value="0.01"/>
     <property environment="env"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="1.6"/>
     <property name="source" value="1.6"/>
-    <path id="SMWrapper.classpath">
+    <path id="DMWrapper.classpath">
         <pathelement location="bin"/>
-        <pathelement location="dist/SimpleMarket.jar"/>
+        <pathelement location="dist/DynamicMarket.jar"/>
         <pathelement location="dist/craftbukkit.jar"/>
+        <pathelement location="dist/bukkit-0.0.1-SNAPSHOT.jar"/>    	
         <pathelement location="dist/plugins/iConomy.jar"/>
         <pathelement location="dist/minecraft_server.jar"/>
         <pathelement location="dist/plugins/Permissions.jar"/>
@@ -37,31 +38,31 @@
         <echo message="${ant.project.name}: ${ant.file}"/>
         <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
             <src path="src"/>
-            <classpath refid="SMWrapper.classpath"/>
+            <classpath refid="DMWrapper.classpath"/>
         </javac>
 		<mkdir dir="dist"/>
 		<mkdir dir="dist/plugins"/>
-		<jar jarfile="dist/plugins/SMWrapper.jar">
+		<jar jarfile="dist/plugins/DMWrapper.jar">
 			<fileset dir="bin"/>
 			<fileset file="plugin.yml"/>
 			<manifest>
 				<attribute name="Built-By" value="magik" />
-    	        <attribute name="Class-Path" value="./SMWrapper/SimpleMarket.jar ../sqlitejdbc-v056.jar ../mysql-connector-java-5.1.14-bin.jar ../mysql-connector-java-bin.jar" />
+    	        <attribute name="Class-Path" value="./DMWrapper/DynamicMarket.jar ../sqlitejdbc-v056.jar ../mysql-connector-java-5.1.14-bin.jar ../mysql-connector-java-bin.jar" />
 			</manifest>
 		</jar>
     	<mkdir dir="target"/>
-	    <mkdir dir="target/SMWrapper"/>
+	    <mkdir dir="target/DMWrapper"/>
     	<copy todir="target">
-    		<fileset file="dist/plugins/SMWrapper.jar"/>
+    		<fileset file="dist/plugins/DMWrapper.jar"/>
     	</copy>
-    	<copy todir="target/SMWrapper">
-    		<fileset file="SimpleMarket.jar" />
+    	<copy todir="target/DMWrapper">
+    		<fileset file="DynamicMarket.jar" />
     		<fileset file="shops.yml" />
     	</copy>
     	<mkdir dir="target/${version}"/>
-    	<zip destfile="target/${version}/SMWrapper-${version}.zip" basedir="target" includes="SMWrapper.jar SMWrapper SMWrapper/SimpleMarket.jar SMWrapper/shops.yml"/>
+    	<zip destfile="target/${version}/DMWrapper-${version}.zip" basedir="target" includes="DMWrapper.jar DMWrapper DMWrapper/DynamicMarket.jar DMWrapper/shops.yml"/>
     	<copy todir="target/${version}">
-    		<fileset file="target/SMWrapper.jar" />
+    		<fileset file="target/DMWrapper.jar" />
     	</copy>
     		
 

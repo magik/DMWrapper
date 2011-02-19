@@ -1,4 +1,4 @@
-package com.bukkit.magik.SMWrapper;
+package me.slaps.DMWrapper;
 
 import org.bukkit.Location;
 

@@ -1,4 +1,4 @@
-package com.bukkit.magik.SMWrapper;
+package me.slaps.DMWrapper;
 
 import org.bukkit.Location;
 import org.bukkit.block.Block;
@@ -6,10 +6,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockListener;
 import org.bukkit.event.block.BlockRightClickEvent;
 
-public class SMWrapperBlockListener extends BlockListener {
-	private SMWrapper parent;
+public class DMWrapperBlockListener extends BlockListener {
+	private DMWrapper parent;
 	
-	public SMWrapperBlockListener(SMWrapper plug) {
+	public DMWrapperBlockListener(DMWrapper plug) {
 		parent = plug;
 	}
 	

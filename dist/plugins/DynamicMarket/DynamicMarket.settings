@@ -1,12 +1,12 @@
 #Minecraft Properties File
-#Thu Feb 17 16:19:36 PST 2011
+#Fri Feb 18 18:02:46 PST 2011
 max-items-per-sale=64
-csv-file=plugins\\SimpleMarket\\shopDB.csv
+csv-file=plugins\\DynamicMarket\\shopDB.csv
 mysql-dbengine=MyISAM
 mysql-db=jdbc\:mysql\://localhost\:3306/minecraft
 shop-tag=&d[&fShop&d]&f 
 mysql-user=root
-items-db-path=plugins\\SimpleMarket\\
+items-db-path=plugins\\DynamicMarket\\
 database-type=sqlite
 mysql-pass=pass
 max-items-per-purchase=64

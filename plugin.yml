@@ -1,9 +1,9 @@
-name: SMWrapper
-main: com.bukkit.magik.SMWrapper.SMWrapper
+name: DMWrapper
+main: me.slaps.DMWrapper.DMWrapper
 version: 0.01
 author: magik
 description: >
-             Wrapper for SimpleMarket that adds location features.
+             Wrapper for DynamicMarket that adds location features.
 commands:
     shop:
        description: Accesses the shop command system.

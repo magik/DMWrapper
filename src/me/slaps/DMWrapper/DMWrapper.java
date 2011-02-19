@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.bukkit.magik.SMWrapper;
+package me.slaps.DMWrapper;
 
 import java.io.File;
 import java.util.logging.Logger;
@@ -19,7 +19,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.Event.Priority;
 
-import com.bukkit.haloinverse.SimpleMarket.SimpleMarket;
+import com.gmail.haloinverse.DynamicMarket.DynamicMarket;
 import com.nijikokun.bukkit.Permissions.Permissions;
 
 
@@ -27,28 +27,28 @@ import com.nijikokun.bukkit.Permissions.Permissions;
  * @author magik
  *
  */
-public class SMWrapper extends JavaPlugin {
+public class DMWrapper extends JavaPlugin {
 
-	public String name; // = "SMWrapper";
+	public String name; // = "DMWrapper";
 	public String codename = "Rwanda";
 	public static String version; // = "0.01";
-	public static String directory; // = "SMWrapper" + File.separator;
+	public static String directory; // = "DMWrapper" + File.separator;
 	
 	public final Logger log = Logger.getLogger("Minecraft");
 	public Server server;
 	
 	public static Permissions perms;
-	public static SimpleMarket sm;
+	public static DynamicMarket sm;
 	
 	protected LocationManager locMgr;
 	protected HashMap<String, String> cmdMap = new HashMap<String, String>();
 	protected HashMap<String, ShopLocation> tmpShop = new HashMap<String, ShopLocation>();
 
-	public static SMWrapperBlockListener blockListener;
-	public static SMWrapperPlayerListener playerListener;
+	public static DMWrapperBlockListener blockListener;
+	public static DMWrapperPlayerListener playerListener;
 		
 	
-	public SMWrapper(PluginLoader pluginLoader, Server instance,
+	public DMWrapper(PluginLoader pluginLoader, Server instance,
 			PluginDescriptionFile desc, File folder, File plugin,
 			ClassLoader cLoader) {
 		super(pluginLoader, instance, desc, folder, plugin, cLoader);
@@ -64,15 +64,15 @@ public class SMWrapper extends JavaPlugin {
 				
 		log.info(name+" ("+version+") loading...");
 		
-		blockListener =  new SMWrapperBlockListener(this);
-		playerListener = new SMWrapperPlayerListener(this);
+		blockListener =  new DMWrapperBlockListener(this);
+		playerListener = new DMWrapperPlayerListener(this);
 		
-        // rewrite some params for passing to SimpleMarket's constructor
-		File smFolder = new File("plugins"+File.separator+"SimpleMarket");
-		File smPlugin = new File("plugins"+File.separator+"SimpleMarket.jar");
-		PluginDescriptionFile smDesc = new PluginDescriptionFile("SimpleMarket", "0.4a r5","");
+        // rewrite some params for passing to DynamicMarket's constructor
+		File smFolder = new File("plugins"+File.separator+"DynamicMarket");
+		File smPlugin = new File("plugins"+File.separator+"DynamicMarket.jar");
+		PluginDescriptionFile smDesc = new PluginDescriptionFile("DynamicMarket", "0.4a r5","");
 		
-		sm = new SimpleMarket(pluginLoader, instance, smDesc, smFolder, smPlugin, cLoader);
+		sm = new DynamicMarket(pluginLoader, instance, smDesc, smFolder, smPlugin, cLoader);
 	}
 
 	@Override

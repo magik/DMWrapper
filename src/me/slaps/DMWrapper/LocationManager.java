@@ -1,4 +1,4 @@
-package com.bukkit.magik.SMWrapper;
+package me.slaps.DMWrapper;
 
 import java.io.File;
 import java.util.List;
@@ -16,7 +16,7 @@ import org.bukkit.util.config.Configuration;
 
 public class LocationManager {
 	
-	SMWrapper parent;
+	DMWrapper parent;
 	
 	File shopFile;
 	
@@ -25,11 +25,11 @@ public class LocationManager {
 	private ArrayList<ShopLocation> shops;
 	private Configuration ShopConfig;
 	
-	public LocationManager(SMWrapper plug) {
+	public LocationManager(DMWrapper plug) {
 		parent = plug;
 		shops = new ArrayList<ShopLocation>();
 
-		shopFile = new File("plugins/SMWrapper/shops.yml");
+		shopFile = new File("plugins/DMWrapper/shops.yml");
 		try {
 			shopFile.createNewFile();
 		} catch (Exception e) {

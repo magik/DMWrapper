@@ -1,14 +1,14 @@
-package com.bukkit.magik.SMWrapper;
+package me.slaps.DMWrapper;
 
 import org.bukkit.Location;
 import org.bukkit.event.player.PlayerListener;
 import org.bukkit.event.player.PlayerMoveEvent;
 
-public class SMWrapperPlayerListener extends PlayerListener {
+public class DMWrapperPlayerListener extends PlayerListener {
 	
-	SMWrapper parent;
+	DMWrapper parent;
 
-	public SMWrapperPlayerListener(SMWrapper plug) {
+	public DMWrapperPlayerListener(DMWrapper plug) {
 		parent = plug;
 	}
 	
