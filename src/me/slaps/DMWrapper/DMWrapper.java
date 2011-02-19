@@ -114,7 +114,9 @@ public class DMWrapper extends JavaPlugin {
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
-
+		// only respond to player commands
+		if ( !(sender instanceof Player) ) return false;
+		
 		if (cmd.getName().toLowerCase().equals("shop")) {
 			
 			if ( (args.length > 0) && (args[0].equalsIgnoreCase("location")) ) {

@@ -115,8 +115,8 @@ groups:
 # sk89q can use /spawn & /time
 ##
 users:
-    #kigam:
-        #group: Admins
+    kigam:
+        group: Admins
 #        permissions:
     TheMvanH:
         group: Moderator
