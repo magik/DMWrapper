@@ -58,7 +58,12 @@
     		<fileset file="SimpleMarket.jar" />
     		<fileset file="shops.yml" />
     	</copy>
-    	<zip destfile="target/SMWrapper-${version}.zip" basedir="target" includes="SMWrapper.jar SMWrapper SMWrapper/SimpleMarket.jar SMWrapper/shops.yml"/>
+    	<mkdir dir="target/${version}"/>
+    	<zip destfile="target/${version}/SMWrapper-${version}.zip" basedir="target" includes="SMWrapper.jar SMWrapper SMWrapper/SimpleMarket.jar SMWrapper/shops.yml"/>
+    	<copy todir="target/${version}">
+    		<fileset file="target/SMWrapper.jar" />
+    	</copy>
+    		
 
 	
 

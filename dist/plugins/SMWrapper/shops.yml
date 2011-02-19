@@ -16,3 +16,11 @@ shops:
     corner2x: 2
     corner2y: 76
     corner2z: 36
+-   id: 8
+    world: world
+    corner1x: 79
+    corner1y: 70
+    corner1z: 38
+    corner2x: 78
+    corner2y: 70
+    corner2z: 39
