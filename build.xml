@@ -5,6 +5,7 @@
               directory with the processing instruction <?eclipse.ant.import?>
               as the first entry and export the buildfile again. -->
 <project basedir="." default="build" name="SMWrapper">
+	<property name="version" value="0.01"/>
     <property environment="env"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="1.6"/>
@@ -57,7 +58,7 @@
     		<fileset file="SimpleMarket.jar" />
     		<fileset file="shops.yml" />
     	</copy>
-    	<zip destfile="target/SMWrapper.zip" basedir="target" includes="SMWrapper.jar SMWrapper SMWrapper/SimpleMarket.jar SMWrapper/shops.yml"/>
+    	<zip destfile="target/SMWrapper-${version}.zip" basedir="target" includes="SMWrapper.jar SMWrapper SMWrapper/SimpleMarket.jar SMWrapper/shops.yml"/>
 
 	
 
