@@ -70,7 +70,7 @@ public class DMWrapper extends JavaPlugin {
         // rewrite some params for passing to DynamicMarket's constructor
 		File smFolder = new File("plugins"+File.separator+"DynamicMarket");
 		File smPlugin = new File("plugins"+File.separator+"DynamicMarket.jar");
-		PluginDescriptionFile smDesc = new PluginDescriptionFile("DynamicMarket", "0.4a r5","");
+		PluginDescriptionFile smDesc = new PluginDescriptionFile("DynamicMarket", "0.4.3","");
 		
 		sm = new DynamicMarket(pluginLoader, instance, smDesc, smFolder, smPlugin, cLoader);
 	}
@@ -116,11 +116,12 @@ public class DMWrapper extends JavaPlugin {
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
 
 		if (cmd.getName().toLowerCase().equals("shop")) {
-			if (!hasPermission(sender, "access")) {
-				return false;
-			}
 			
 			if ( (args.length > 0) && (args[0].equalsIgnoreCase("location")) ) {
+				if (!hasPermission(sender, "location")) {
+					return false;
+				}
+
 				String pname = ((Player)sender).getName();						
 				if ( args.length == 2 && args[1].equalsIgnoreCase("set") ) {
 					sender.sendMessage("please right click the 1st corner");
@@ -179,7 +180,7 @@ public class DMWrapper extends JavaPlugin {
 					sender.sendMessage("         /shop location enable - enables location based shops");
 					sender.sendMessage("         /shop location disable - disable location based shops");
 					sender.sendMessage("         /shop location list - lists shop IDs");
-					sender.sendMessage("         /shop location tp - teleports to shop");
+					sender.sendMessage("         /shop location tp <ID> - teleports to shop");
 					return true; 
 				}
 			}
