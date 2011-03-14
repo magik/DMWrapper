@@ -1,6 +1,6 @@
 name: DMWrapper
 main: me.slaps.DMWrapper.DMWrapper
-version: 0.03
+version: 0.04
 author: magik
 description: >
              Wrapper for DynamicMarket that adds location features.

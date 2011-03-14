@@ -44,9 +44,9 @@ groups:
 #            - 'general.spawn'
             - 'lwc.protect'
             - 'myhome.home.*'
-            - 'wormhole.use'
+            - 'wormhole.use.*'
             - 'wormhole.build'
-            - 'wormhole.remove'
+            - 'wormhole.remove.own'
             - 'SpawnControl.spawn.use'
             - 'essentials.list'
             - 'essentials.mail'
@@ -68,14 +68,22 @@ groups:
             - 'iConomy.top'
             - 'iConomy.rank'
             - 'towny.wild.*'
-            - 'BetterShop.user.*'
+#            - 'BetterShop.user.*'
             - 'iConomyChestShop.shop.create'
             - 'iConomyChestShop.shop.use'
             - 'herochat.create'
             - 'herochat.remove'
-            - 'dynamicmarket.access'
-            - 'dynamicmarket.buy'
-            - 'dynamicmarket.sell'
+#            - 'dynamicmarket.access'
+#            - 'dynamicmarket.buy'
+#            - 'dynamicmarket.sell'
+            - 'localshops.buysell'
+            - 'localshops.manage'
+            - 'localshops.manage.owner'
+            - 'localshops.create'
+            - 'localshops.create.free'
+            - 'NetherGate.portal.use'
+            - 'NetherGate.portal.create'
+            - 'NetherGate.portal.create.portal'
     Moderator:
         default: false
         info:
@@ -114,9 +122,21 @@ groups:
 # DarkGrave has control over all commands.
 # sk89q can use /spawn & /time
 ##
-#users:
-    #kigam:
-        #group: Admins
+users:
+    kigam:
+        group: Admins
+        permissions:
+    TheMvanH:
+        group: Moderator
 #        permissions:
-
- 
+    Asdyem:
+        group: Moderator
+#        permissions:
+  
+#    darkgrave:
+#        group: Admins
+#        permissions:
+#    sk89q:
+#        group: Default
+#        permissions:
+#            - 'general.time'
