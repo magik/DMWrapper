@@ -1,8 +1,6 @@
 bin/*
-dist/world/*
-dist/userdata/*
-dist/banned-ips.txt
-dist/banned-players.txt
-dist/ops.txt
-dist/server.log*
-dist/start.bat
+bin
+dist
+bin/
+dist/
+.classpath
