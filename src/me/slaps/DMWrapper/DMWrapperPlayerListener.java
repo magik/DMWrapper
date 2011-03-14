@@ -1,6 +1,8 @@
 package me.slaps.DMWrapper;
 
 import org.bukkit.Location;
+import org.bukkit.event.Event;
+import org.bukkit.event.Event.Priority;
 import org.bukkit.event.player.PlayerListener;
 import org.bukkit.event.player.PlayerMoveEvent;
 
@@ -10,6 +12,7 @@ public class DMWrapperPlayerListener extends PlayerListener {
 
 	public DMWrapperPlayerListener(DMWrapper plug) {
 		parent = plug;
+		parent.getServer().getPluginManager().registerEvent(Event.Type.PLAYER_MOVE, this, Priority.Monitor, parent);
 	}
 	
 	@Override

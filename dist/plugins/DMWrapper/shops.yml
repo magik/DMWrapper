@@ -1,26 +1,10 @@
 enabled: true
 shops:
--   id: 5
+-   id: 1
     world: world
-    corner1x: 8
-    corner1y: 74
-    corner1z: 30
-    corner2x: 9
-    corner2y: 74
-    corner2z: 29
--   id: 7
-    world: world
-    corner1x: 8
-    corner1y: 76
-    corner1z: 40
-    corner2x: 2
-    corner2y: 76
-    corner2z: 36
--   id: 8
-    world: world
-    corner1x: 79
-    corner1y: 70
-    corner1z: 38
-    corner2x: 78
-    corner2y: 70
-    corner2z: 39
+    corner1x: -56
+    corner1y: 64
+    corner1z: -131
+    corner2x: -55
+    corner2y: 64
+    corner2z: -132

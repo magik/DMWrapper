@@ -114,21 +114,9 @@ groups:
 # DarkGrave has control over all commands.
 # sk89q can use /spawn & /time
 ##
-users:
-    kigam:
-        group: Admins
+#users:
+    #kigam:
+        #group: Admins
 #        permissions:
-    TheMvanH:
-        group: Moderator
-#        permissions:
-    Asdyem:
-        group: Moderator
-#        permissions:
-  
-#    darkgrave:
-#        group: Admins
-#        permissions:
-#    sk89q:
-#        group: Default
-#        permissions:
-#            - 'general.time'
+
+ 

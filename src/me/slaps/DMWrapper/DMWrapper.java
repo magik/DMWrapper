@@ -3,21 +3,15 @@
  */
 package me.slaps.DMWrapper;
 
-import java.io.File;
 import java.util.logging.Logger;
 import java.util.HashMap;
 
-import org.bukkit.Server;
 import org.bukkit.Location;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
-import org.bukkit.plugin.PluginLoader;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Event;
-import org.bukkit.event.Event.Priority;
 
 import com.gmail.haloinverse.DynamicMarket.DynamicMarket;
 import com.nijikokun.bukkit.Permissions.Permissions;
@@ -29,84 +23,68 @@ import com.nijikokun.bukkit.Permissions.Permissions;
  */
 public class DMWrapper extends JavaPlugin {
 
-	public String name; // = "DMWrapper";
-	public String codename = "Rwanda";
-	public static String version; // = "0.02";
-	public static String directory; // = "DMWrapper" + File.separator;
+	public static String name; // = "DMWrapper";
+	public static String codename = "Botswana";
+	public static String version; // = "0.03";
 	
-	public final Logger log = Logger.getLogger("Minecraft");
-	public Server server;
+	public static Logger logger = Logger.getLogger("Minecraft");
+	public static PluginDescriptionFile desc;
 	
 	public static Permissions perms;
-	public static DynamicMarket sm;
+	public static DynamicMarket dm;
+	
+	public static DMWrapperBlockListener blockListener;
+	public static DMWrapperPlayerListener playerListener;
+	public static DMWrapperPluginListener pluginListener;
 	
 	protected LocationManager locMgr;
 	protected HashMap<String, String> cmdMap = new HashMap<String, String>();
 	protected HashMap<String, ShopLocation> tmpShop = new HashMap<String, ShopLocation>();
 
-	public static DMWrapperBlockListener blockListener;
-	public static DMWrapperPlayerListener playerListener;
-		
 	
-	public DMWrapper(PluginLoader pluginLoader, Server instance,
-			PluginDescriptionFile desc, File folder, File plugin,
-			ClassLoader cLoader) {
-		super(pluginLoader, instance, desc, folder, plugin, cLoader);
 
-		folder.mkdir();
-		name = desc.getName();
-		version = desc.getVersion();
-		directory = getDataFolder() + File.separator;
-		
-		server = instance;
-		
-		locMgr = new LocationManager(this);
-				
-		log.info(name+" ("+version+") loading...");
-		
-		blockListener =  new DMWrapperBlockListener(this);
-		playerListener = new DMWrapperPlayerListener(this);
-		
-        // rewrite some params for passing to DynamicMarket's constructor
-		File smFolder = new File("plugins"+File.separator+"DynamicMarket");
-		File smPlugin = new File("plugins"+File.separator+"DynamicMarket.jar");
-		PluginDescriptionFile smDesc = new PluginDescriptionFile("DynamicMarket", "0.4.3","");
-		
-		sm = new DynamicMarket(pluginLoader, instance, smDesc, smFolder, smPlugin, cLoader);
-	}
+    public static void info(String msg) {
+    	logger.info("["+name+"] "+ msg);
+    }
+    public static void warning(String msg) {
+    	logger.warning("["+name+"] "+ msg);
+    }
 
 	@Override
 	public void onDisable() {
-		sm.onDisable();
-		log.info(name+" ("+version+") disabled");
+		info("Version ["+version+"] ("+codename+") disabled");
 	}
 
 	@Override
-	public void onEnable() {
-		setupPermissions();
+    public void onEnable() {
+		
+		desc = getDescription();
+		name = desc.getName();
+		version = desc.getVersion();
+
+		getDataFolder().mkdir();
+		//directory = getDataFolder() + File.separator;
+
+		// setup listeners
+		blockListener =  new DMWrapperBlockListener(this);
+		playerListener = new DMWrapperPlayerListener(this);
+	  	pluginListener = new DMWrapperPluginListener(this);
+	  	
+	  	// try to check for if external plugins already enabled
+	  	pluginListener.tryEnablePlugins();
+
+	  	// setup location manager
+		locMgr = new LocationManager(this);
+
+		// clear the command histories
 		cmdMap.clear();
-		sm.onEnable();
-		getServer().getPluginManager().registerEvent(Event.Type.BLOCK_RIGHTCLICKED, blockListener, Priority.Monitor, this);
-		getServer().getPluginManager().registerEvent(Event.Type.PLAYER_MOVE, playerListener, Priority.Monitor, this);
-		log.info(name+" ("+version+") enabled");
-	}
-	
-	public void setupPermissions()
-	{
-		Plugin test = getServer().getPluginManager().getPlugin("Permissions");
-	 
-		if (perms == null)
-			if (test != null) {
-				perms = (Permissions)test;
-			} else {
-				log.info( "["+name+"] Permission system not enabled. Disabling plugin.");
-				getServer().getPluginManager().disablePlugin(this);
-			}
-	}
+		
+		info("Version ["+version+"] ("+codename+") enabled");
+    }
+    
 	
 	private boolean hasPermission(CommandSender sender, String permString)
 	{
-		//CHANGED: Added this to streamline permission checking code.
 		if (sender instanceof Player)
 			return Permissions.Security.permission((Player)sender, name.toLowerCase()+"."+permString);
 		return true;
@@ -115,7 +93,7 @@ public class DMWrapper extends JavaPlugin {
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
 		// location-based features only available to Players
-		if ( !(sender instanceof Player) ) return sm.onCommand(sender, cmd, commandLabel, args);
+		if ( !(sender instanceof Player) ) return dm.wrapperCommand(sender, cmd.getName(), args);
 
 		// only intercept shop command
 		if (cmd.getName().toLowerCase().equals("shop")) {	
@@ -124,13 +102,13 @@ public class DMWrapper extends JavaPlugin {
 			
 			// just '/shop'
 			if ( (args.length == 0) || ( args[0].equalsIgnoreCase("help") ) ){
-				Boolean ret = sm.onCommand(sender, cmd, commandLabel, args);
-				sender.sendMessage("        /shop location");
+				dm.wrapperCommand(sender, cmd.getName(), args);
+				sender.sendMessage("/shop location");
 				return true;
 				
 			// is location based shopping enabled?
 			} else if ( !locMgr.shopLocationsEnabled ) {
-				return sm.onCommand(sender, cmd, commandLabel, args);
+				return dm.wrapperCommand(sender, cmd.getName(), args);
 				
 			// locations enabled, intercept commands
 			} else {
@@ -140,7 +118,7 @@ public class DMWrapper extends JavaPlugin {
 					
 					// in a shop location? or admin?
 					if ( hasPermission(sender, "admin") || locMgr.inShopLoc(((Player)sender).getLocation()) ) {
-						return sm.onCommand(sender, cmd, commandLabel, args);
+						return dm.wrapperCommand(sender, cmd.getName(), args);
 					} else {
 						sender.sendMessage("Not in the shopping area!");
 						return true;
@@ -148,7 +126,10 @@ public class DMWrapper extends JavaPlugin {
 					
 				// a '/shop location' command
 				} else {
-					if (!hasPermission(sender, "location"))	return false;
+					if (!hasPermission(sender, "location"))	{
+						return dm.wrapperCommand(sender, cmd.getName(), args);
+						//return false;
+					}
 
 					String pname = ((Player)sender).getName();			
 					

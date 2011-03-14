@@ -20,7 +20,7 @@ public class LocationManager {
 	
 	File shopFile;
 	
-	Boolean shopLocationsEnabled;
+	Boolean shopLocationsEnabled = false;
 	
 	private ArrayList<ShopLocation> shops;
 	private Configuration ShopConfig;
@@ -29,12 +29,18 @@ public class LocationManager {
 		parent = plug;
 		shops = new ArrayList<ShopLocation>();
 
-		shopFile = new File("plugins/DMWrapper/shops.yml");
-		try {
-			shopFile.createNewFile();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		shopFile = new File(parent.getDataFolder() + File.separator + "shops.yml");
+		
+		ShopConfig = new Configuration(shopFile);
+		
+		if ( !shopFile.exists() ) {
+//			try {
+//				shopFile.createNewFile();
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+			saveConfigFile();
+		} 
 		
 		loadConfigFile();
 	}
@@ -42,7 +48,6 @@ public class LocationManager {
 
 	
 	public void loadConfigFile() {
-		ShopConfig = new Configuration(shopFile);
 		ShopConfig.load();
 		
 		shopLocationsEnabled = ShopConfig.getBoolean("enabled", false);
@@ -57,11 +62,11 @@ public class LocationManager {
 			StringTokenizer st = new StringTokenizer(o, "{}=, ");
 			while (st.hasMoreTokens()) shopkeys.put(st.nextToken(),st.nextToken());
 			
-			Location loc1 = new Location(parent.server.getWorld(shopkeys.get("world")), 
+			Location loc1 = new Location(parent.getServer().getWorld(shopkeys.get("world")), 
 					                     Double.parseDouble(shopkeys.get("corner1x")), 
 					                     Double.parseDouble(shopkeys.get("corner1y")), 
 					                     Double.parseDouble(shopkeys.get("corner1z")) );
-			Location loc2 = new Location(parent.server.getWorld(shopkeys.get("world")), 
+			Location loc2 = new Location(parent.getServer().getWorld(shopkeys.get("world")), 
                                          Double.parseDouble(shopkeys.get("corner2x")), 
                                          Double.parseDouble(shopkeys.get("corner2y")), 
                                          Double.parseDouble(shopkeys.get("corner2z")) );

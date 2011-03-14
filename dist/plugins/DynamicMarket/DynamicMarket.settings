@@ -1,12 +1,26 @@
 #Minecraft Properties File
-#Fri Feb 18 18:02:46 PST 2011
-max-items-per-sale=64
-csv-file=plugins\\DynamicMarket\\shopDB.csv
-mysql-dbengine=MyISAM
+#Tue Mar 08 22:40:50 PST 2011
+default-shop-account-free=true
+text-colour-bracket=d
+text-colour-param=b
+default-shop-account=
 mysql-db=jdbc\:mysql\://localhost\:3306/minecraft
-shop-tag=&d[&fShop&d]&f 
-mysql-user=root
+mysql-dbengine=MyISAM
+economy-plugin=iconomy4
+wrapper-mode=false
+text-colour-command=f
+csv-file-path=plugins\\DynamicMarket\\
+simple-permissions=false
+text-colour-error=c
+shop-tag={BKT}[{}Shop{BKT}]{} 
+csv-file=shopDB.csv
+text-colour-normal=e
+transaction-log-autoflush=true
 items-db-path=plugins\\DynamicMarket\\
+wrapper-permissions=false
 database-type=sqlite
+transaction-log-file=transactions.log
+max-items-per-sale=2048
+mysql-user=root
+max-items-per-purchase=2048
 mysql-pass=pass
-max-items-per-purchase=64

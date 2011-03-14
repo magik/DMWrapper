@@ -1,12 +1,13 @@
 name: DMWrapper
 main: me.slaps.DMWrapper.DMWrapper
-version: 0.02
+version: 0.03
 author: magik
 description: >
              Wrapper for DynamicMarket that adds location features.
 commands:
-    shop:
+    dshop:
        description: Accesses the shop command system.
+       aliases: shop
        usage: |
               /<command>
               /<command> help <topic/command>

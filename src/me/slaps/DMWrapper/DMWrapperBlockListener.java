@@ -3,6 +3,8 @@ package me.slaps.DMWrapper;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
+import org.bukkit.event.Event.Priority;
 import org.bukkit.event.block.BlockListener;
 import org.bukkit.event.block.BlockRightClickEvent;
 
@@ -11,6 +13,8 @@ public class DMWrapperBlockListener extends BlockListener {
 	
 	public DMWrapperBlockListener(DMWrapper plug) {
 		parent = plug;
+		parent.getServer().getPluginManager().registerEvent(Event.Type.BLOCK_RIGHTCLICKED, this, Priority.Monitor, parent);
+		
 	}
 	
 	@Override
