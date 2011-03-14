@@ -107,7 +107,7 @@ public class DMWrapper extends JavaPlugin {
 				return true;
 				
 			// is location based shopping enabled?
-			} else if ( !locMgr.shopLocationsEnabled ) {
+			} else if ( !locMgr.shopLocationsEnabled && (args.length > 0) && (!args[0].equalsIgnoreCase("location")) )  {
 				return dm.wrapperCommand(sender, cmd.getName(), args);
 				
 			// locations enabled, intercept commands
@@ -127,8 +127,8 @@ public class DMWrapper extends JavaPlugin {
 				// a '/shop location' command
 				} else {
 					if (!hasPermission(sender, "location"))	{
-						return dm.wrapperCommand(sender, cmd.getName(), args);
-						//return false;
+					    sender.sendMessage("Not allowed to use the /shop location command!");
+						return true;
 					}
 
 					String pname = ((Player)sender).getName();			
