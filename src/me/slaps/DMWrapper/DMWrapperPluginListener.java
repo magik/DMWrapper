@@ -9,7 +9,6 @@ import org.bukkit.plugin.PluginManager;
 
 
 import com.gmail.haloinverse.DynamicMarket.DynamicMarket;
-import com.nijiko.coelho.iConomy.iConomy;
 import com.nijikokun.bukkit.Permissions.Permissions;
 
 public class DMWrapperPluginListener extends ServerListener {
