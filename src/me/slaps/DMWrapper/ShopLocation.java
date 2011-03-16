@@ -27,14 +27,19 @@ public class ShopLocation {
 		computeNewBlock();
 	}
 	
-	public void setLocation(Integer i, Location loc) {
-		if ( i == 1 ) setLoc1 = loc;
-		else if ( i == 2 ) setLoc2 = loc;
-		computeNewBlock();
+	public boolean setLocation(Integer i, Location loc) {
+		if ( i == 1 ) {
+		    setLoc1 = loc;
+		} else if ( i == 2 ) {
+		    setLoc2 = loc;
+		}
+		
+		return computeNewBlock();
 	}
 	
 	public boolean isInShop(Location loc) {
 		if (( LocMin == null ) && (LocMax == null)) return false;
+        if ( !loc.getWorld().equals(LocMin.getWorld()) ) return false;
 		return 
 		   ( (loc.getBlockX() >= LocMin.getBlockX()) && 
 		     (loc.getBlockX() <= LocMax.getBlockX()) &&
@@ -79,24 +84,29 @@ public class ShopLocation {
 	}
 	
 	
-	private void computeNewBlock() {
+	private boolean computeNewBlock() {
 		if ( ( setLoc1 == null ) || ( setLoc2 == null ) ) {
-			return;
+			return false;
 		} else {
-			double maxX = Math.max(setLoc1.getBlockX(),setLoc2.getBlockX());
-			double maxY = Math.max(setLoc1.getBlockY(),setLoc2.getBlockY());
-			double maxZ = Math.max(setLoc1.getBlockZ(),setLoc2.getBlockZ());
-			double minX = Math.min(setLoc1.getBlockX(),setLoc2.getBlockX());
-			double minY = Math.min(setLoc1.getBlockY(),setLoc2.getBlockY());
-			double minZ = Math.min(setLoc1.getBlockZ(),setLoc2.getBlockZ());
-			
-			// make it at least player height
-			if ( maxY - minY < 2) maxY += 2;
-			
-			LocMin = new Location(setLoc1.getWorld(), minX, minY, minZ);
-			LocMax = new Location(setLoc1.getWorld(), maxX, maxY, maxZ);
-			
-			set = true;
+		    if ( setLoc1.getWorld().equals(setLoc2.getWorld()) ) {
+        		double maxX = Math.max(setLoc1.getBlockX(),setLoc2.getBlockX());
+        		double maxY = Math.max(setLoc1.getBlockY(),setLoc2.getBlockY());
+        		double maxZ = Math.max(setLoc1.getBlockZ(),setLoc2.getBlockZ());
+        		double minX = Math.min(setLoc1.getBlockX(),setLoc2.getBlockX());
+        		double minY = Math.min(setLoc1.getBlockY(),setLoc2.getBlockY());
+        		double minZ = Math.min(setLoc1.getBlockZ(),setLoc2.getBlockZ());
+        		
+        		// make it at least player height
+        		if ( maxY - minY < 2) maxY += 2;
+        		
+        		LocMin = new Location(setLoc1.getWorld(), minX, minY, minZ);
+        		LocMax = new Location(setLoc1.getWorld(), maxX, maxY, maxZ);
+        		
+        		set = true;
+        		return true;
+		    } else {
+		        return false;
+		    }
 		}
 	}
 	

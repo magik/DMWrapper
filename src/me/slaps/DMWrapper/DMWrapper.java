@@ -96,7 +96,7 @@ public class DMWrapper extends JavaPlugin {
 		if ( !(sender instanceof Player) ) return dm.wrapperCommand(sender, cmd.getName(), args);
 
 		// only intercept shop command
-		if (cmd.getName().toLowerCase().equals("dshop")) {	
+		if (cmd.getName().toLowerCase().equals("shop") || cmd.getName().toLowerCase().equals("dshop")) {	
 			
 			// pass commands to DynamicMarket or intercept
 			
