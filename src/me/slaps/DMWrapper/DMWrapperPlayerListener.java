@@ -22,6 +22,14 @@ public class DMWrapperPlayerListener extends PlayerListener {
 	    if ( DMWrapper.debugMode )
 	        plug.getServer().getPluginManager().registerEvent(Event.Type.PLAYER_COMMAND_PREPROCESS, this, Priority.Highest, plug);
 	}
+
+    @Override
+    public void onPlayerCommandPreprocess ( PlayerChatEvent event ) {
+        if (DMWrapper.debugMode)
+            DMWrapper.info("DMWrapperPlayerListener.onPlayerCommandPreprocess(): Player: " + 
+                           event.getPlayer().getName() + " msg: " + event.getMessage() + 
+                           " Canceled? " + ( event.isCancelled()? "Yes": "No" ) );
+    }	
 	
 	@Override
 	public void onPlayerMove(PlayerMoveEvent event) {
@@ -170,12 +178,6 @@ public class DMWrapperPlayerListener extends PlayerListener {
         }
 
     }
-	
-	public void onPlayerCommandPreprocess ( PlayerChatEvent event ) {
-	    if (DMWrapper.debugMode)
-    	    DMWrapper.info("DMWrapperPlayerListener.onPlayerCommandPreprocess(): Player: " + 
-    	                   event.getPlayer().getName() + " msg: " + event.getMessage() + 
-    	                   " Canceled? " + ( event.isCancelled()? "Yes": "No" ) );
-	}
+    
 
 }

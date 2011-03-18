@@ -13,11 +13,8 @@ import com.nijikokun.bukkit.Permissions.Permissions;
 
 public class DMWrapperPluginListener extends ServerListener {
 	
-	DMWrapper parent;
-
 	public DMWrapperPluginListener(DMWrapper plug) {
-		parent = plug;
-	  	parent.getServer().getPluginManager().registerEvent(Event.Type.PLUGIN_ENABLE, this, Priority.Monitor, parent);
+	    plug.getServer().getPluginManager().registerEvent(Event.Type.PLUGIN_ENABLE, this, Priority.Monitor, plug);
 	}
 	
 	@Override
@@ -46,8 +43,7 @@ public class DMWrapperPluginListener extends ServerListener {
 		DMWrapper.info("Successfully linked with Permissions");	  		
 	}
 	
-	public void tryEnablePlugins() {
-		PluginManager pm = parent.getServer().getPluginManager();
+	public void tryEnablePlugins(PluginManager pm) {
 	  	if(pm.getPlugin("DynamicMarket").isEnabled() && DMWrapper.dm == null) {
 	  		Plugin plugin = pm.getPlugin("DynamicMarket");
 	  		enableDynamicMarket((DynamicMarket)plugin);

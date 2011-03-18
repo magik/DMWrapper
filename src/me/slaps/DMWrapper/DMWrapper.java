@@ -81,7 +81,7 @@ public class DMWrapper extends JavaPlugin {
 	  	pluginListener = new DMWrapperPluginListener(this);
 	  	
 	  	// try to check for if external plugins already enabled
-	  	pluginListener.tryEnablePlugins();
+	  	pluginListener.tryEnablePlugins(getServer().getPluginManager());
 
 		info("Version ["+version+"] ("+codename+") enabled" + (DMWrapper.debugMode?" **DEBUG MODE ENABLED**":""));
     }
