@@ -15,7 +15,6 @@ import org.bukkit.event.player.PlayerMoveEvent;
 public class DMWrapperPlayerListener extends PlayerListener {
 	
 	protected HashMap<String, Boolean> inShopMap = new HashMap<String, Boolean>();
-	
 
 	public DMWrapperPlayerListener(DMWrapper plug) {
 	    plug.getServer().getPluginManager().registerEvent(Event.Type.PLAYER_MOVE, this, Priority.Monitor, plug);
@@ -29,6 +28,7 @@ public class DMWrapperPlayerListener extends PlayerListener {
             DMWrapper.info("DMWrapperPlayerListener.onPlayerCommandPreprocess(): Player: " + 
                            event.getPlayer().getName() + " msg: " + event.getMessage() + 
                            " Canceled? " + ( event.isCancelled()? "Yes": "No" ) );
+       
     }	
 	
 	@Override

@@ -29,7 +29,6 @@ public class DMWrapper extends JavaPlugin {
 	public static String version; // = "0.03";
 	
 	public static Boolean debugMode = false;
-
 	
 	public static Logger logger = Logger.getLogger("Minecraft");
 	public static PluginDescriptionFile desc;
@@ -68,7 +67,6 @@ public class DMWrapper extends JavaPlugin {
 		
 		getConfig();
 		
-
         // setup location manager
         locMgr = new LocationManager(this);
         

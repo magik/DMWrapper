@@ -13,7 +13,10 @@ import com.nijikokun.bukkit.Permissions.Permissions;
 
 public class DMWrapperPluginListener extends ServerListener {
 	
+    DMWrapper parent;
+    
 	public DMWrapperPluginListener(DMWrapper plug) {
+	    parent = plug;
 	    plug.getServer().getPluginManager().registerEvent(Event.Type.PLUGIN_ENABLE, this, Priority.Monitor, plug);
 	}
 	
@@ -34,7 +37,7 @@ public class DMWrapperPluginListener extends ServerListener {
 	
 	public void enableDynamicMarket(DynamicMarket plugin) {
 		DMWrapper.dm = plugin;
-		DMWrapper.dm.enableWrapperMode();
+		DMWrapper.dm.hookWrapper(parent);
   		DMWrapper.info("Successfully linked with DynamicMarket");
 	}
 	
