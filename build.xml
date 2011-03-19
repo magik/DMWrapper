@@ -47,7 +47,7 @@
 			<fileset file="plugin.yml"/>
 			<manifest>
 				<attribute name="Built-By" value="magik" />
-    	        <attribute name="Class-Path" value="./DMWrapper/DynamicMarket.jar ../sqlitejdbc-v056.jar ../mysql-connector-java-5.1.14-bin.jar ../mysql-connector-java-bin.jar" />
+    	        <attribute name="Class-Path" value="./DynamicMarket.jar ./DynamicMarket/sqlitejdbc-v056.jar ./DynamicMarket/mysql-connector-java-5.1.14-bin.jar ./DynamicMarket/mysql-connector-java-bin.jar" />
 			</manifest>
 		</jar>
     	<mkdir dir="target"/>
