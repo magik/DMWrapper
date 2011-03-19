@@ -200,11 +200,16 @@ public class DMWrapperPlayerListener extends PlayerListener {
             message.send("{CMD} /shop {PRM}<command> <params>{} - Use a shop command.");
             commands += " list";
             shortcuts += " -? -l";
+
+            if (DMWrapper.hasPermission(sender, "admin")) {
+                commands += " location";
+            }
+            
             if (DMWrapper.dm.playerListener.hasPermission(sender, "buy")) {
                 commands += " buy";
                 shortcuts += " -b";
             }
-            if (DMWrapper.hasPermission(sender, "sell")) {
+            if (DMWrapper.dm.playerListener.hasPermission(sender, "sell")) {
                 commands += " sell";
                 shortcuts += " -s";
             }
@@ -230,10 +235,6 @@ public class DMWrapperPlayerListener extends PlayerListener {
                 commands += " exportdb importdb";
             }
             
-            if (DMWrapper.hasPermission(sender, "admin")) {
-                commands += " location";
-            }
-
             topics += "ids details about";
             if (DMWrapper.dm.playerListener.hasPermission(sender, "items.add") || DMWrapper.dm.playerListener.hasPermission(sender, "items.update")) {
                 topics += " tags";
