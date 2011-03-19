@@ -58,6 +58,7 @@
     	<copy todir="target/DMWrapper">
     		<fileset file="DynamicMarket.jar" />
     		<fileset file="shops.yml" />
+    		<fileset file="config.yml" />
     	</copy>
     	<mkdir dir="target/${version}"/>
     	<zip destfile="target/${version}/DMWrapper-${version}.zip" basedir="target" includes="DMWrapper.jar DMWrapper DMWrapper/DynamicMarket.jar DMWrapper/shops.yml"/>
