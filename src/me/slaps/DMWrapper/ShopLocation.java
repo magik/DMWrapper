@@ -66,7 +66,7 @@ public class ShopLocation {
 		if ( isInShop(new Location(other.setLoc1.getWorld(), minX, minY, minZ)) ) return true;
 		
 		maxX = LocMax.getBlockX();
-		maxY = LocMax.getBlockX();
+		maxY = LocMax.getBlockY();
 		maxZ = LocMax.getBlockZ();
 		minX = LocMin.getBlockX();
 		minY = LocMin.getBlockY();
