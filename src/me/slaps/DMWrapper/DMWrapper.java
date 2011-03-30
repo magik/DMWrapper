@@ -36,7 +36,6 @@ public class DMWrapper extends JavaPlugin {
 	public static Permissions perms;
 	public static DynamicMarket dm;
 	
-	public static DMWrapperBlockListener blockListener;
 	public static DMWrapperPlayerListener playerListener;
 	public static DMWrapperPluginListener pluginListener;
 	
@@ -74,7 +73,6 @@ public class DMWrapper extends JavaPlugin {
         cmdMap.clear();
 		
 		// setup listeners
-		blockListener =  new DMWrapperBlockListener(this);
 		playerListener = new DMWrapperPlayerListener(this);
 	  	pluginListener = new DMWrapperPluginListener(this);
 	  	

@@ -1,9 +1,9 @@
 package me.slaps.DMWrapper;
 
 import org.bukkit.event.Event;
+import org.bukkit.event.server.PluginEnableEvent;
 import org.bukkit.event.server.ServerListener;
 import org.bukkit.event.Event.Priority;
-import org.bukkit.event.server.PluginEvent;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 
@@ -21,7 +21,7 @@ public class DMWrapperPluginListener extends ServerListener {
 	}
 	
 	@Override
-    public void onPluginEnabled(PluginEvent event) {
+    public void onPluginEnable(PluginEnableEvent event) {
     	if(event.getPlugin().getDescription().getName().equals("DynamicMarket")) {
             Plugin pluginDM = DynamicMarket.getTheServer().getPluginManager().getPlugin("DynamicMarket");
 	 

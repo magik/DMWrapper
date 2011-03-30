@@ -3,12 +3,14 @@ package me.slaps.DMWrapper;
 import java.util.HashMap;
 
 import org.bukkit.Location;
+import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.Event.Priority;
-import org.bukkit.event.player.PlayerChatEvent;
+import org.bukkit.event.block.Action;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerListener;
 import org.bukkit.event.player.PlayerMoveEvent;
 
@@ -21,19 +23,50 @@ public class DMWrapperPlayerListener extends PlayerListener {
 	protected HashMap<String, Boolean> inShopMap = new HashMap<String, Boolean>();
 
 	public DMWrapperPlayerListener(DMWrapper plug) {
+        plug.getServer().getPluginManager().registerEvent(Event.Type.PLAYER_INTERACT, this, Priority.Monitor, plug);
 	    plug.getServer().getPluginManager().registerEvent(Event.Type.PLAYER_MOVE, this, Priority.Monitor, plug);
-	    if ( DMWrapper.debugMode )
-	        plug.getServer().getPluginManager().registerEvent(Event.Type.PLAYER_COMMAND_PREPROCESS, this, Priority.Highest, plug);
 	}
 
+    
     @Override
-    public void onPlayerCommandPreprocess ( PlayerChatEvent event ) {
-        if (DMWrapper.debugMode)
-            DMWrapper.info("DMWrapperPlayerListener.onPlayerCommandPreprocess(): Player: " + 
-                           event.getPlayer().getName() + " msg: " + event.getMessage() + 
-                           " Canceled? " + ( event.isCancelled()? "Yes": "No" ) );
-       
-    }	
+    public void onPlayerInteract(PlayerInteractEvent event) {
+        
+        if ( event.getAction().equals(Action.LEFT_CLICK_BLOCK) ) {
+            Player player = event.getPlayer();
+            String pname = player.getName();
+            String cmd = DMWrapper.cmdMap.get(pname);
+    
+            if ( cmd == null ) return;
+            
+            Block b = event.getClickedBlock();
+            
+            if ( cmd.equals("location set") ) {
+                player.sendMessage("set corner 1 to: "+b.getX()+","+b.getY()+","+b.getZ());
+                player.sendMessage("please left click the 2nd corner");
+                DMWrapper.tmpShop.put(pname, new ShopLocation(new Location(player.getWorld(), b.getX(), b.getY(), b.getZ())));
+                DMWrapper.cmdMap.put(pname, "location set 2");
+            } else if ( cmd.equals("location set 2") ) {
+                player.sendMessage("set corner 2 to: "+b.getX()+","+b.getY()+","+b.getZ());
+                ShopLocation tmp = DMWrapper.tmpShop.get(pname);
+                DMWrapper.tmpShop.remove(pname);
+                if ( tmp == null ) {
+                    player.sendMessage("Error creating shop location - 1");
+                } else {
+                    tmp.setLocation(2, new Location(player.getWorld(), b.getX(), b.getY(), b.getZ()));
+                    if ( tmp.set ) {
+                        if ( DMWrapper.locMgr.add(tmp) ) {
+                            player.sendMessage("Shop location created!");
+                        } else {
+                            player.sendMessage("Intersects existing shop location!");
+                        }
+                    }
+                    else player.sendMessage("Error creating shop location - 2");
+                }
+                DMWrapper.cmdMap.remove(pname);
+            }
+        }
+    }
+
 	
 	@Override
 	public void onPlayerMove(PlayerMoveEvent event) {
@@ -167,7 +200,7 @@ public class DMWrapperPlayerListener extends PlayerListener {
                             if (dest == null) {
                                 sender.sendMessage("Could not find shop.");
                             } else {
-                                ((Player) sender).teleportTo(dest);
+                                ((Player) sender).teleport(dest);
                             }
                         }
                         return true;
@@ -186,7 +219,6 @@ public class DMWrapperPlayerListener extends PlayerListener {
     }
     
     private boolean showHelp(CommandSender sender, String topic) {
-        // TODO: Migrate help system to an MCDocs-like plugin eventually.
         Messaging message = new Messaging(sender);
 
         if (topic.isEmpty()) {
