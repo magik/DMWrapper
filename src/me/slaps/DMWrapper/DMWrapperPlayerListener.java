@@ -157,7 +157,7 @@ public class DMWrapperPlayerListener extends PlayerListener {
                     String pname = ((Player) sender).getName();
 
                     if (args.length == 2 && args[1].equalsIgnoreCase("set")) {
-                        sender.sendMessage("please right click the 1st corner");
+                        sender.sendMessage("please left click the 1st corner");
                         DMWrapper.cmdMap.put(pname, "location set");
                         return true;
                     } else if (args.length == 2 && args[1].equalsIgnoreCase("cancel")) {
