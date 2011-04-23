@@ -15,6 +15,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import com.gmail.haloinverse.DynamicMarket.DynamicMarket;
+import com.nijiko.permissions.PermissionHandler;
 import com.nijikokun.bukkit.Permissions.Permissions;
 
 
@@ -33,7 +34,7 @@ public class DMWrapper extends JavaPlugin {
 	public static Logger logger = Logger.getLogger("Minecraft");
 	public static PluginDescriptionFile desc;
 	
-	public static Permissions perms;
+	public static PermissionHandler perms;
 	public static DynamicMarket dm;
 	
 	public static DMWrapperPlayerListener playerListener;

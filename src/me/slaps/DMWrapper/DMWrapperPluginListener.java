@@ -9,7 +9,7 @@ import org.bukkit.plugin.PluginManager;
 
 
 import com.gmail.haloinverse.DynamicMarket.DynamicMarket;
-import com.nijikokun.bukkit.Permissions.Permissions;
+import com.nijiko.permissions.PermissionHandler;
 
 public class DMWrapperPluginListener extends ServerListener {
 	
@@ -28,10 +28,10 @@ public class DMWrapperPluginListener extends ServerListener {
             if (pluginDM != null)	enableDynamicMarket((DynamicMarket)pluginDM);
     	}
 
-    	if(event.getPlugin().getDescription().getName().equals("Permissions")) {
-        	Plugin pluginPerms = DynamicMarket.getTheServer().getPluginManager().getPlugin("Permissions");
+    	if(event.getPlugin().getDescription().getName().equals("PermissionHandler")) {
+        	Plugin pluginPerms = DynamicMarket.getTheServer().getPluginManager().getPlugin("PermissionHandler");
         	
-	        if(pluginPerms != null)	enablePermissions((Permissions)pluginPerms);
+	        if(pluginPerms != null)	enablePermissions((PermissionHandler)pluginPerms);
     	}
     }
 	
@@ -41,7 +41,7 @@ public class DMWrapperPluginListener extends ServerListener {
   		DMWrapper.info("Successfully linked with DynamicMarket");
 	}
 	
-	public void enablePermissions(Permissions plugin) {
+	public void enablePermissions(PermissionHandler plugin) {
 		DMWrapper.perms = plugin;
 		DMWrapper.info("Successfully linked with Permissions");	  		
 	}
@@ -53,7 +53,7 @@ public class DMWrapperPluginListener extends ServerListener {
 	  	}
 	  	if(pm.getPlugin("Permissions").isEnabled() && DMWrapper.perms == null) {
 	  		Plugin plugin = pm.getPlugin("Permissions");
-	  		enablePermissions((Permissions)plugin);
+	  		enablePermissions((PermissionHandler)plugin);
 	  	}
 	}	
 }
